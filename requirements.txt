@@ -1,0 +1,7 @@
+cffi>=1.15.0
+numpy>=1.21.3
+opencv-python>=4.5.4.58
+Pillow>=8.4.0
+pycparser>=2.20
+SoundFile>=0.10.3.post1
+tqdm>=4.62.3
