@@ -11,13 +11,13 @@ FRAMERATE = 24
 WIDTH = 1280
 HEIGHT = 720
 FCC = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
-ALPHA = 200
+ALPHA = 250
 
 seed(time_ns())
 
 samples, rate = sf.read("JeSais.wav", always_2d=True)
 
-data = [int(((mean(x) * rate) % 255)) for x in samples[40000:50000]]
+data = [int(((mean(x) * rate) % 255)) for x in samples]
 
 frames = []
 
