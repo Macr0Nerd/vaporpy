@@ -7,15 +7,17 @@ import cv2.cv2 as cv2
 from tqdm.auto import tqdm
 
 
-FRAMERATE = 24
+FRAMERATE = 12
 WIDTH = 1280
 HEIGHT = 720
 FCC = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
-ALPHA = 250
+ALPHA = 254
 
 seed(time_ns())
 
 samples, rate = sf.read("JeSais.wav", always_2d=True)
+
+samples = samples[:2500]
 
 data = [int(((mean(x) * rate) % 255)) for x in samples]
 
@@ -38,13 +40,13 @@ with tqdm(total=len(samples)) as pbar:
         frames.append(img)
         pbar.update()
 
-print(frames)
+print(len(frames))
 
 vid = None
 
 try:
     vid = cv2.VideoWriter("test.mp4", FCC, FRAMERATE, (WIDTH, HEIGHT))
-    for x in frames[::int(rate/FRAMERATE)]:
+    for x in frames[:180]:
         vid.write(cv2.cvtColor(asarray(x), cv2.COLOR_RGBA2BGR))
 finally:
     vid.release()
